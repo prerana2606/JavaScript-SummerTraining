@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <input type="number" id="num1" >
+    <input type="number" id="num2" >
+    <select id="select">
+     <option value="none">Make a choice</option>
+        <option value="add">Add</option>
+        <option value="sub">Subtract</option>
+        <option value="mult">Multiply</option>
+        <option value="divide">Divide</option>
+    </select>
+    <script>
+        document.getElementById("select").onchange=function(){
+            var num1 = parseFloat(document.getElementById("num1").value);
+            var num2 = parseFloat(document.getElementById("num2").value);
+                var select = document.getElementById("select").value;
+                if (select == "add") {
+                  console.log(num1+num2)
+                } else if (select == "sub") {
+                    console.log(num1 - num2) 
+                } else if (select == "mult") {
+                    console.log( num1 * num2)
+                } else if (select == "divide") {
+                    console.log( num1 / num2);
+                }
+                else{
+                    console.log("Make a choice");
+                }
+         }
+    </script>
+</body>
+</html>

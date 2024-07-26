@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Calculator</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   background: linear-gradient(45deg,#0a0a0a,#5a616c);
+}
+.calculator{
+    border:1px solid #949598;
+    padding: 20px;
+    border-radius: 18px;
+    background: transparent;
+    box-shadow: 0px 3px 15px rgb(60, 88, 94);
+}
+input{
+    width:290px;
+    border: none;
+    padding: 20px;
+    margin: 10px;
+    background: transparent;
+    box-shadow: 0px 3px 15px rgb(52, 50, 50);
+    font-size: 40px;
+    text-align: right;
+    cursor: pointer;
+    color: #ffffff;
+}
+input::placeholder{
+      color: #ffffff;
+
+}
+button{
+    border: none;
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    border-radius: 50%;
+    background: transparent;
+    color: #ffffff;
+    font-size: 20px;
+   cursor: pointer;
+    box-shadow: 0px 3px 15px rgb(77, 108, 114);
+}
+
+.equal{
+    background-color: rgb(7, 128, 128);
+}
+
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" placeholder="0">
+        <div>
+            <button>AC</button>
+            <button>DEL</button>
+            <button>%</button>
+            <button>/</button>
+        </div>
+        <div>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button>*</button>
+        </div>
+        <div>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>-</button>
+        </div>
+        <div>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>+</button>
+        </div>
+        <div>
+            <button>00</button>
+            <button>0</button>
+            <button>.</button>
+            <button class="equal">=</button>
+        </div>
+    </div>
+    <script>
+        let btn=document.querySelectorAll("button");
+        for(let i of btn){
+          i.onclick = function(){
+            console.log(i.innerText)
+            if(i.innerText === "="){
+              let val= document.querySelector("input").value;
+              val = val.replace(/%/g, '/100*');
+            //   console.log(eval(val))
+              document.querySelector("input").value = eval(val);
+
+            }
+            else if(i.innerText== "AC"){
+                document.querySelector("input").value = "";
+
+            }
+            else if(i.innerText== "DEL"){
+                document.querySelector("input").value = document.querySelector("input").value.slice(0,-1);
+                
+            }
+            else{
+              document.querySelector("input").value += i.innerText;
+            }
+          }
+        }
+    </script>
+</body>
+</html>

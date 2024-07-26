@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+
+            box-shadow: 0px 3px 15px rgb(95, 94, 94);
+            padding: 5px 10px;
+            margin-right: 40px;
+        }
+
+        input {
+            margin: 6px;
+        }
+
+        .content {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        #content  {
+           margin-top: 20px;    /* Adjust width as needed */
+        }
+   
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <input type="text" id="ip1" placeholder="Enter your id">
+        <input type="text" id="ip2" placeholder="Enter your name">
+        <input type="text" id="ip3" placeholder="Enter your course">
+        <input type="text" id="ip4" placeholder="Enter your age">
+        <button id="btn">Submit</button>
+    </div>
+    <table id="content" border="">
+        <tr>
+            <th id="i1">ID</th>
+            <th id="i2">Name</th>
+            <th id="i3">course</th>
+            <th id="i4">Age</th>
+        </tr>
+    </table>
+
+    <script>
+        document.getElementById("btn").onclick = function () {
+            let id = document.getElementById('ip1').value;
+            let name = document.getElementById('ip2').value;
+            let course = document.getElementById('ip3').value;
+            let age = document.getElementById('ip4').value;
+            let tr1 = document.createElement("tr")
+            let td1 = document.createElement("td")
+            td1.textContent = id;
+            tr1.appendChild(td1);
+            let td2 = document.createElement("td")
+            td2.textContent = name;
+            tr1.appendChild(td2);
+            let td3 = document.createElement("td")
+            td3.textContent = course;
+            tr1.appendChild(td3);
+            let td4 = document.createElement("td")
+            td4.textContent = age;
+            tr1.appendChild(td4);
+            document.getElementById('content').appendChild(tr1);
+            document.getElementById('ip1').value = '';
+            document.getElementById('ip2').value = '';
+            document.getElementById('ip3').value = '';
+            document.getElementById('ip4').value = '';
+        }
+    </script>
+</body>
+
+</html>

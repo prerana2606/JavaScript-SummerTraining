@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        textarea{
+            width: 400px;
+            height:auto;
+            height:220px;
+            margin:10px 0px;
+        }
+        #text{
+            height: 20vh;
+            width:70%;
+            border:2px solid black;
+            margin:20px 0px;
+        }
+        
+    </style>
+</head>
+<body>
+    <textarea id="txt" row="10" cols="20"></textarea>
+    <h2>CSS Properties</h2>
+    <div class="input">
+        <input type="text" id="ip1" placeholder="color">
+        <input type="text" id="ip2" placeholder="background color">
+        <input type="text" id="ip3" placeholder="Font size">
+    </div>
+    <div id="text"></div>
+    <div id="total">Total Letters :</div>
+
+
+    <script>
+        document.getElementById("txt").oninput=function(){
+            let text=document.getElementById("txt").value;
+            document.getElementById("text").innerHTML=`<h3>${text}</h3>`;
+            document.getElementById("total").innerHTML=`Total Letters:${text.length}`;
+        };
+        document.getElementById("ip1").oninput=function(){
+            let color=document.getElementById("ip1").value;
+            document.getElementById("text").style.color=color
+        };
+        document.getElementById("ip2").oninput=function(){
+            let bgcolor=document.getElementById("ip2").value;
+            document.getElementById("text").style.backgroundColor=bgcolor
+        };
+        document.getElementById("ip3").oninput=function(){
+            let font=document.getElementById("ip3").value;
+            document.getElementById("text").style.fontSize=font+"px"
+        };
+        
+                
+    </script>
+</body>
+</html>

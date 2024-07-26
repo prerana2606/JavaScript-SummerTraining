@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            display: flex;
+            justify-content: center;
+            height: 4vh;
+            width: 20%;
+            margin: 10px 0px;
+        }
+
+        #btn {
+            margin-left: 75px;
+            width: 10%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <input type="text" class="inp" id="ip1" placeholder="Enter id">
+        <input type="text" class="inp" id="ip2" placeholder="Enter name">
+        <input type="text" class="inp" id="ip3" placeholder="Enter age">
+        <input type="text" class="inp" id="ip4" placeholder="Enter city">
+        <button id="btn">SUBMIT</button>
+
+        <table id="myTable" border="">
+            <tr>
+                <th id="i1">ID</th>
+                <th id="i2">Name</th>
+                <th id="i3">Age</th>
+                <th id="i4">City</th>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        document.getElementById("btn").onclick = function () {
+            let val = document.getElementsByClassName("inp");
+            let table = document.getElementById("myTable");
+            let row = table.insertRow();
+
+            for (let i = 0; i < val.length; i++) {
+                let cell = row.insertCell(i);
+                cell.innerHTML = val[i].value;
+                val[i].value = ""; 
+            }
+        }
+        // document.getElementById("btn").onclick = function () {
+        //     let id = document.getElementById('ip1').value;
+        //     let name = document.getElementById('ip2').value;
+        //     let course = document.getElementById('ip3').value;
+        //     let age = document.getElementById('ip4').value;
+        //     let tr1 = document.createElement("h5")
+        //     tr1.innerHTML = id;
+        //     document.querySelector("#i1").append(tr1);
+        //     let tr2 = document.createElement("h5")
+        //     tr2.innerHTML = name;
+        //     document.querySelector("#i2").append(tr2);
+        //     let tr3 = document.createElement("h5")
+        //     tr3.innerHTML = course;
+        //     document.querySelector("#i3").append(tr3);
+        //     let tr4 = document.createElement("h5")
+        //     tr4.innerHTML = age;
+        //     document.querySelector("#i4").append(tr4);
+
+        //     document.getElementById('ip1').value = '';
+        //     document.getElementById('ip2').value = '';
+        //     document.getElementById('ip3').value = '';
+        //     document.getElementById('ip4').value = '';
+        // }
+    </script>
+</body>
+
+</html>

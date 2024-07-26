@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do-List</title>
+    <style>
+        .checked {
+            text-decoration: line-through;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="contaner">
+        <div class="to-do-list">
+            <h2>To-Do-List</h2>
+            <div class="row">
+                <input type="text" id="input-box" placeholder="Add Your Task">
+                <button onclick="addTask()">Add</button>
+            </div>
+            <ul id="list-contener"> 
+            </ul>
+        </div>
+    </div>
+
+    <script>
+const inputBox = document.getElementById("input-box");
+const listContainer = document.getElementById("list-contener");
+
+function addTask() {
+    if (inputBox.value == '') {
+        alert('Please enter a task');
+        return;
+    } else {
+        const li = document.createElement("li");
+        li.innerHTML = inputBox.value;
+
+        const buttonContainer = document.createElement("div");
+        buttonContainer.className = "button-container";
+
+        const completeButton = document.createElement("button");
+        completeButton.innerHTML = "Complete";
+        completeButton.onclick = function () {
+            li.classList.toggle("checked");
+            saveData();
+        };
+
+        const deleteButton = document.createElement("button");
+        deleteButton.innerHTML = "Delete";
+        deleteButton.onclick = function () {
+            li.remove();
+            saveData();
+        };
+
+        buttonContainer.appendChild(completeButton);
+        buttonContainer.appendChild(deleteButton);
+        li.appendChild(buttonContainer);
+
+        listContainer.appendChild(li);
+    }
+    inputBox.value = "";
+    saveData();
+}
+
+function saveData() {
+    localStorage.setItem("data", listContainer.innerHTML);
+}
+
+function showTask() {
+    listContainer.innerHTML = localStorage.getItem("data");
+    const buttons = document.querySelectorAll("li button");
+    buttons.forEach(button => {
+        button.onclick = function () {
+            if (button.innerHTML == "Complete") {
+                button.parentElement.parentElement.classList.toggle("checked");
+            } else if (button.innerHTML == "Delete") {
+                button.parentElement.parentElement.remove();
+            }
+            saveData();
+        };
+    });
+}
+
+showTask();
+
+    </script>
+
+</body>
+</html>

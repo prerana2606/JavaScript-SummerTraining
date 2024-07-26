@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // let obj={
+        //     rollno:1001,
+        //     name:"prerana",
+        //     email:"preranamehat13@gmail.com",
+        //     age:19,
+        //     city:"jaipur"
+        // };
+        // console.log(obj);
+        // console.log(obj.rollno)
+        // console.log(obj.city)   
+        
+        // for(let i in obj){
+        //     console.log(i,obj[i])
+        // }
+
+        let obj=[{
+            rollno:1001,
+            name:"prerana",
+            email:"preranamehta13@gmail.com",
+            age:15,
+            city:"jaipur"
+        },
+        {
+            rollno:1002,
+            name:"sanya",
+            email:"sanya@gmail.com",
+            age:21,
+            city:"jaipur"
+        },
+        {
+            rollno:1003,
+            name:"tanya",
+            email:"tanya@gmail.com",
+            age:19,
+            city:"jaipur"
+        },
+        {
+            rollno:1004,
+            name:"rashi",
+            email:"rashi@gmail.com",
+            age:9,
+            city:"jaipur"
+        },
+        {
+            rollno:1005,
+            name:"devi",
+            email:"devi@gmail.com",
+            age:19,
+            city:"mumbai"
+        },
+        {
+            rollno:1006,
+            name:"sahil",
+            email:"sahil@gmail.com",
+            age:17,
+            city:"jaipur"
+        },
+        {
+            rollno:1007,
+            name:"komal",
+            email:"komal@gmail.com",
+            age:22,
+            city:"mumbai"
+        },
+        {
+            rollno:1008,
+            name:"goli",
+            email:"goli@gmail.com",
+            age:10,
+            city:"agra"
+        },
+        {
+            rollno:1009,
+            name:"tapu",
+            email:"tapu@gmail.com",
+            age:29,
+            city:"jaipur"
+        },
+        {
+            rollno:1010,
+            name:"sonu",
+            email:"sonu@gmail.com",
+            age:16,
+            city:"alwar"
+        },
+    ]
+    
+    let b=obj.filter((item)=> item.age>18)
+    console.log(b)
+
+let obj1={
+            rollno:1010,
+            fname:"sonu",
+            lname:"mehta",
+            email:"sonu@gmail.com",
+            age:16,
+            city:"alwar",
+            skills:["c++","java","pyhton"],
+            fullname:function(){
+                console.log(this.fname,this.lname)
+                console.log(this);
+            },
+            marks:{
+                "p":85,
+                "c":40,
+                "m":91
+            }
+}
+console.log(obj.fullname())
+console.log(obj1.marks.m)
+    
+    </script>
+</body>
+</html>

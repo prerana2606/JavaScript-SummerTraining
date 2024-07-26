@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .cont{
+            display: flex;
+           
+        }
+        .form {
+            width: 270px;
+            box-shadow: 0px 3px 15px rgb(95, 94, 94);
+            padding: 5px 10px;
+            margin-right: 40px;
+        }
+
+        .form1 {
+            width: 270px;
+            box-shadow: 0px 3px 15px rgb(95, 94, 94);
+            margin-left: 40px;
+            padding: 5px 10px;
+        }
+        .display-box{
+           margin-bottom: 70px;
+         height: 50px;
+        }
+        
+        #displayed-image{
+            width: 180px;
+            height: auto;
+            border-radius: 60%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cont">
+  <div class="form">
+        <input id="image-link" type="text" placeholder="Enter image link">
+        <p>Name:</p>
+        <input type="text" class="inp" id="inp0" placeholder="Name" />
+        <p>Email:</p>
+        <input type="text" class="inp" id="inp1" placeholder="email" />
+        <p>Course:</p>
+        <input type="text" class="inp" id="inp2" placeholder="Course" />
+        <p>Mobile No.</p>
+        <input type="text" class="inp" id="inp3" placeholder="Mobile No." />
+    </div>
+    <div class="form1">
+        <div class="display-box">
+            <img id="displayed-image" src="" alt="Displayed Image">
+          </div>
+          <div class="details">
+              <p id="name">Name :</p>
+              <p id="email">Email :</p>
+              <p id="course">Course :</p>
+              <p id="mobile">Mobile No.</p>
+
+          </div>
+    </div>
+    </div>
+</body>
+<script>
+    document.getElementById("image-link").oninput=function(){
+            let imglink=document.getElementById("image-link").value;
+            document.getElementById("displayed-image").src =imglink;
+        };
+        document.getElementById("inp0").oninput=function(){
+        let text1=document.getElementById("inp0").value
+        document.getElementById("name").innerHTML=`Name :${text1}`
+       }
+        document.getElementById("inp1").oninput=function(){
+        let text2=document.getElementById("inp1").value;
+        document.getElementById("email").innerHTML=`Email : ${text2}`
+       }
+        document.getElementById("inp2").oninput=function(){
+        let text3=document.getElementById("inp2").value;
+        document.getElementById("course").innerHTML=`Course : ${text3}`
+       }
+        document.getElementById("inp3").oninput=function(){
+        let text4=document.getElementById("inp3").value;
+        document.getElementById("mobile").innerHTML=`Mobile No. : ${text4}`
+       }
+</script>
+</html>
