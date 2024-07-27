@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD in JS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 40%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        form input,
+        form select,
+        form button {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        form button {
+            background-color: orange;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: darkorange;
+        }
+
+        table {
+            width: 70%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-left: 15%;
+
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ccc;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .actions button {
+            padding: 5px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .actions .edit {
+            color: blue;
+        }
+
+        .actions .delete {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="test">
+    <div class="container">
+        <h1>CRUD in JS</h1>
+        <form id="crudForm">
+            <input type="text" id="name" placeholder="Enter your name" required>
+            <input type="number" id="age" placeholder="Enter your age" required>
+            <input type="tel" id="phone" placeholder="Enter your phone" required>
+            <input type="email" id="email" placeholder="Enter your email" required>
+            <div>
+                <input type="radio" id="male" name="gender" value="male" required> Male
+                <input type="radio" id="female" name="gender" value="female"> Female
+                <input type="radio" id="other" name="gender" value="other"> Other
+            </div>
+            <select id="hometown" required>
+                <option value="">Select Hometown</option>
+                <option value="Ajmer">Ajmer</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Jaipur">Jaipur</option>
+                <option value="Kota">Kota</option>
+                <option value="Dehradun">Dehradun</option>
+                <option value="Punjab">Punjab</option>
+
+
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div class="table">
+        <table>
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Hometown</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+
+            </tbody>
+        </table>
+    </div>
+    </div>
+
+
+    <script>
+        let serialNumber = 1;
+        const form = document.getElementById('crudForm');
+        const tableBody = document.getElementById('tableBody');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            addRow();
+            form.reset();
+        });
+
+        function addRow() {
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const hometown = document.getElementById('hometown').value;
+
+            const row = tableBody.insertRow();
+            row.innerHTML = `
+        <td>${serialNumber++}</td>
+        <td>${name}</td>
+        <td>${age}</td>
+        <td>${phone}</td>
+        <td>${email}</td>
+        <td>${gender}</td>
+        <td>${hometown}</td>
+        <td class="actions">
+            <button class="edit" onclick="editRow(this)">✏️</button>
+            <button class="delete" onclick="deleteRow(this)">🗑️</button>
+        </td>
+    `
+        }
+
+        function deleteRow(button) {
+            const row = button.parentElement.parentElement;
+            tableBody.removeChild(row);
+            serialNumber--;
+            updateSerialNumbers();
+        }
+
+        function editRow(button) {
+            const row = button.parentElement.parentElement;
+            document.getElementById('name').value = row.cells[1].innerText;
+            document.getElementById('age').value = row.cells[2].innerText;
+            document.getElementById('phone').value = row.cells[3].innerText;
+            document.getElementById('email').value = row.cells[4].innerText;
+            document.querySelector(`input[name="gender"][value="${row.cells[5].innerText}"]`).checked = true;
+            document.getElementById('hometown').value = row.cells[6].innerText;
+
+            deleteRow(button);
+        }
+
+        function updateSerialNumbers() {
+            for (let i = 0; i < tableBody.rows.length; i++) {
+                tableBody.rows[i].cells[0].innerText = i + 1;
+            }
+        }
+
+    </script>
+</body>
+
+</html>
