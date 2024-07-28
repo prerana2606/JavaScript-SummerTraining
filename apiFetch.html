@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        #container {
+
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .box {
+
+            width: 300px;
+            /* border: 2px solid black; */
+            box-shadow: 0px 0px 10px rgb(156, 155, 155);
+            margin: 5px;
+            flex-grow: 1;
+            padding: 10px;
+            text-align: center;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        button {
+
+            padding: 15px;
+            width: 45%;
+            margin: 10px 5px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .search {
+
+            text-align: center;
+            position: relative;
+            margin: 40px 0px;
+        }
+
+        input {
+
+            width: 40%;
+            padding: 14px;
+            border-radius: 5px 0px 0px 5px;
+        }
+
+        .btn {
+
+            width: 200px;
+            margin: 0px;
+            top: 0;
+
+
+            position: relative;
+            border-radius: 0px 15px 15px 0px;
+            cursor: pointer;
+        }
+
+        .cart-icon {
+            font-size: 25px;
+            margin-left: 20px;
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="search">
+        <input id="inp" type="text" placeholder="Search Your Products">
+        <button class="btn" onclick="searchproduct()">Search</button>
+        <i class="fa-solid fa-cart-shopping cart-icon"><span id="cartcount" class="cart-count">0</span></i>
+    </div>
+    <div id="container"></div>
+    <script>    
+        //    let prom = fetch('https://dummyjson.com/products');
+        //    prom.then((response)=>{
+        //       response.json().then((result)=>{
+        //             console.log(result.products)
+        //       })
+        //    })
+        let products = [];
+        let cartcount = 0;
+        async function FetchData() {
+            try {
+                let data = await fetch('https://dummyjson.com/products');
+                let json_data = await data.json();
+                products = json_data.products;
+                displayproduct(products)
+            } catch (error) {
+                console.log("data is not fetched")
+            }
+        }
+
+        function searchproduct() {
+            let searchitem = document.getElementById("inp").value.toLowerCase();
+            let filter = products.filter((product) => {
+                return product.title.toLowerCase().includes(searchitem);
+            })
+            displayproduct(filter);
+        }
+
+        //   let filter_product = json_data.products.filter((item)=>{
+
+        //      return item.price<100;
+        //   })
+        //   console.log(filter_product)
+        //   console.log(json_data.products)
+        function displayproduct(filteredproduct) {
+            let container = document.getElementById("container");
+            container.innerHTML = "";
+            for (let i of filteredproduct) {
+
+                let div = document.createElement('div');
+                let image = document.createElement('img');
+                let title = document.createElement('h3');
+                let price = document.createElement('h4');
+                let description = document.createElement('p');
+                let add_cart = document.createElement("button");
+                let buy_now = document.createElement("button");
+                add_cart.innerHTML = "Add To Cart";
+                buy_now.innerHTML = "Buy Now";
+                title.innerHTML = i.title;
+                price.innerHTML = `$${i.price}`;
+                description.innerHTML = i.description.slice(0, 80);
+                image.src = i.thumbnail;
+                div.className = "box"
+                div.append(image);
+                div.append(title);
+                div.append(price);
+                div.append(description);
+                div.append(add_cart)
+                div.append(buy_now)
+                container.append(div);
+                add_cart.addEventListener("click", () => {
+                    cartcount++;
+                    document.getElementById("cartcount").innerText = cartcount;
+                    // document.querySelector("#container").append(div)
+                })
+            }
+        }
+        FetchData()
+    </script>
+
+</body>
+
+</html>
